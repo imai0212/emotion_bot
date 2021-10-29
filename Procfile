@@ -4,4 +4,5 @@
 # STEP2
 # web: uvicorn training.step2.hello:app
 # web: uvicorn training.hello:app
-web: uvicorn source.hello:app --host=0.0.0.0 --port=${PORT:-5000}
+
+web: uvicorn source.linebot_echo:app --host=0.0.0.0 --port=${PORT:-5000}
