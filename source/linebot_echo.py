@@ -50,5 +50,5 @@ async def callback(request: Request):
 def message_text(event: MessageEvent) -> None:
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text)
+        TextSendMessage(text=event.message.text + 'テスト')
     )
