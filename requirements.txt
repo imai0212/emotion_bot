@@ -1,0 +1,6 @@
+line-bot-sdk
+fastapi
+python-dotenv
+uvicorn[standard]
+google-cloud-language
+wheel
