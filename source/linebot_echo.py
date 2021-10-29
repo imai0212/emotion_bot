@@ -1,19 +1,13 @@
 import os
 import sys
-from fastapi import FastAPI, Request, HTTPException
 
-from linebot import (
-    LineBotApi, WebhookHandler
-)
-from linebot.exceptions import(
-    InvalidSignatureError
-)
-from linebot.models import(
-    MessageEvent, TextMessage, TextSendMessage
-)
+from fastapi import FastAPI, Request, HTTPException
+from linebot import (LineBotApi, WebhookHandler)
+from linebot.exceptions import(InvalidSignatureError)
+from linebot.models import(MessageEvent, TextMessage, TextSendMessage)
+
 
 app = FastAPI()
-
 # チャネルシークレット/アクセストークンの取得
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
@@ -50,5 +44,5 @@ async def callback(request: Request):
 def message_text(event: MessageEvent) -> None:
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text + 'テスト')
+        TextSendMessage(text=event.message.text)
     )
