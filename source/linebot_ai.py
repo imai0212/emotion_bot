@@ -5,7 +5,6 @@ from fastapi import FastAPI, Request, HTTPException
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage,)
-
 from dotenv import load_dotenv
 from . import client
 
@@ -42,12 +41,13 @@ async def callback(request: Request):
     except InvalidSignatureError:
         # 署名検証で失敗したときは例外をあげる
         raise HTTPException(
-            status_code=400, detail="Signature verification failed")
+            status_code=400, detail="Signature verification failed"
+        )
     return 'OK'
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event: MessageEvent) -> None:
-    response = client.analyze_sentiment(event.message.tex)
+    response = client.analyze_sentiment(event.message.text)
     # 分析結果をメッセージ形式にフォーマット
     message = client.format_response_to_message(response)
 
